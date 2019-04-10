@@ -1,0 +1,29 @@
+.event-details {
+  &__speakers {
+    h6 {
+      margin: 3rem 0 1rem 0;
+    }
+    &__content {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      div {
+        flex-basis: 45%;
+
+        img {
+          width: 100%;
+        }
+
+        h6 {
+          color: $color-red;
+          margin: 1rem 0;
+        }
+  
+        p {
+          margin: 0;
+        }
+      }
+    }
+  }
+}

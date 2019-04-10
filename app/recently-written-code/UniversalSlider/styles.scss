@@ -1,0 +1,59 @@
+@import "../../../styles/variables";
+
+.universal-slider {
+  position: relative;
+  max-width: 750px;
+  min-width: 320px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  &__navigation-left,
+  &__navigation-right {
+    position: absolute;
+    top: 155px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: $color-primary-darker-2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 21px;
+    color: $color-white;
+    cursor: pointer;
+  }
+
+  &__navigation-right {
+    right: 15px;
+  }
+
+  &__navigation-left {
+    left: 15px;
+  }
+
+  &__item {
+    width: 165px;
+    height: 165px;
+    cursor: pointer;
+    margin-bottom: .7rem;
+
+    &--active {
+      height: 360px;
+      flex-basis: 100%;
+      margin-bottom: 1.5rem;
+      cursor: initial;
+    }
+
+    &--inactive-number {
+      border: 1px solid $color-red;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'RobotoMono';
+      font-weight: bold;
+      font-size: 2em;
+      cursor: initial;
+    }
+  }
+}
