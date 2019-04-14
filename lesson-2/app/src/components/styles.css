@@ -1,0 +1,12 @@
+.use-case {
+  width: 400px;
+  height: 400px;
+  border: 1px solid;
+  text-align: center;
+  display: inline-block;
+}
+
+.dismissible-wrapper {
+  width: fit-content;
+  height: fit-content;
+}

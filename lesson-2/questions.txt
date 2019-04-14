@@ -1,0 +1,81 @@
+Questions
+1. Which javascript types do you know?
+2. What it the difference between null and undefined   
+3. Could you please explain what is closure in javascript and provide a few examples
+4. http://www.adequatelygood.com/JavaScript-Scoping-and-Hoisting.html
+5. https://www.youtube.com/watch?v=8aGhZQkoFbQ&vl=en
+6. Could you please explain what do you know about OOP in javascript?
+    1. what operator new is doing, for example “new Animal” what is javascript doing under the hood
+    2. Create two classes an Animal, a Rabbit and build dependency between them by (Object.create and without Object.create)
+        1. build UML diagram(https://www.youtube.com/watch?v=UI6lqHOVHic)
+
+
+
+Code
+
+2. Placement render prop
+
+interface
+
+target: oneOfType([any]),
+context: oneOfType([
+    instanceOf(Element),
+    shape({
+        current: instanceOf(Element)
+    })
+]),
+modifiers: oneOfType([object]),
+position: oneOf([
+    'auto-start',
+    'auto',
+    'auto-end',
+    'top-start',
+    'top',
+    'top-end',
+    'right-start',
+    'right',
+    'right-end',
+    'bottom-end',
+    'bottom',
+    'bottom-start',
+    'left-end',
+    'left',
+    'left-start'
+]),
+
+className: string,
+targetClassName: string,
+contentClassName: string,
+
+isPortal: bool,
+hidden: bool.isRequired,
+isOpen: bool.isRequired,
+
+children: func.isRequired,
+onDismiss: func.isRequired
+
+
+
+Use Case
+
+<Placement
+    isOpen={this.props.isOpen}
+    target={<Button onClick={}>Open Something<Button>}
+    onDismiss={this.props.onDismiss}
+    contentClassName={styles.content}
+    position="bottom-end"
+>
+    {() => (
+        <div><List …. /></div>
+    )}
+</Placement>
+
+
+
+JavaScript Scoping and Hoisting
+http://www.adequatelygood.com
+
+What the heck is the event loop anyway? | Philip Roberts | JSConf EU - YouTube
+https://www.youtube.com
+
+
