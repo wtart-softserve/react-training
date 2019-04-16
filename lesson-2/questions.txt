@@ -1,5 +1,12 @@
 Questions
 1. Which javascript types do you know?
+  undefined
+  null (because of a bug it is a object)
+  string
+  number
+  symbol
+  boolean
+  object
 2. What it the difference between null and undefined   
 3. Could you please explain what is closure in javascript and provide a few examples
 4. http://www.adequatelygood.com/JavaScript-Scoping-and-Hoisting.html

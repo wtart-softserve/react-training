@@ -236,3 +236,301 @@ React lifecycle:
   - Error 
     - static getDerivedStateFromError()
     - componentDidCatch()
+
+
+CSS 
+  Specificity - is a process of determining which css rule will be applied to an element.
+  It actually determines which rules will take precedence.
+  Inline style usallly wins then ID then class vlaue (or pseudo-class or attribute selector),
+  universal selector (*) has no specificity.
+
+  Transition - allows to add an effect while changing from one style to another. You can set 
+  the which property you want to transition, duration, how you want to transit 
+  (linear, ease, ease-in, ease-out, cubic-bezier) and delay when transition will start.
+  You can transition more than one property by comma separation.
+
+  Filter - allows you to render DOM element, image or video. You can choose from: grayscale,
+  blur, opacity, brightness, contrast.
+
+  Positions
+    - static (Default value. Elements render in order, as they appear in the document flow)
+    - absolute (The element is positioned relative to its first positioned (not static)
+      ancestor element)
+    - fixed (The element is positioned relative to the browser window)
+    - relative (The element is positioned relative to its normal position)
+    - inital (Sets this property to its default value)
+    - sticky (The element is positioned based on the user's scroll position.
+      A sticky element toggles between relative and fixed, depending on the scroll position.
+      It is positioned relative until a given offset position is met in the viewport -
+      then it 'sticks' in place (like position: fixed))
+
+JS
+  this - when used in global scope equels the global object, which is window in the browser.
+  When used inside a function, the value of this is dynamically determined when the function
+  is called and its value equals the context of the function.
+
+  Promises 
+    async/await
+      - calling an async function always results in a promise 
+      - await waits for a promise to be fullfiled, then returns its value.
+      - you can pass non-promise values to await 
+      - await it may be only used within async functions 
+      - await will wait until at least the next tick before returning, even when awaiting 
+        already-fulfilled promises or non-promise values.
+    
+    Combining promises 
+      - Use all() to turn an array of promises into a promise to an array.
+        Promise.all([promise, promise, promise]);
+        If any promise is rejected, the error will be passed through.
+      - Use race() instead to pass through the first settled promise 
+        Promise.race([promise, promise]);
+    
+    Making promises 
+      - The function passed to new Promise will be executed synchronously.
+        new Promise((resolve, reject) => {
+          doImportantStuff((error, value) => {
+            if (error) {
+              reject(error);
+            } else {
+              resolve(value);
+            }
+          })
+        });
+  
+  HTTP Requests
+    Preflight request 
+      A CORS preflight request is a CORS request that checks to see if the CORS protocol is 
+      understood.
+
+      It is an OPTIONS request, using three HTTP request headers: Access-Control-Request-
+      Method, Access-Control-Request-Headers, and the Origin header.
+
+      A preflight request is automatically issued by browser, when needed. In normal cases, 
+      front-end developers don't need to craft such requests themselves.
+
+      Access-Control-Allow-Origin: *
+    Fetch()
+     fetch(url).then();
+
+     Response Types:
+      When we make a fetch request, the response will be given a response.type 
+      of 'basic', 'cors' or 'opaque'. These types indicate where the resource has come from 
+      and can be used to inform how you should treat the response object.
+
+      When a request is made for a resource on the same origin, the response will have 
+      basic type and there aren't any restrictions on what you can view from the response.
+
+      If a request is made for a resource on another origin which returns the CORs headers, then 
+      the type is cors. cors and basic responses are almost identical except that a cors 
+      response restricts the headers you can view to 'Cache-Control', 'Content-Language',
+      'Content-Type', 'Expires', 'Last-Modified', and 'Pragma'.
+
+      An opaque response is for a request made for a resource on a different origin that 
+      doesn't return CORS headers. With an opaque response we won't be able to read the data 
+      returned or view the status of the request, meaning we can't check if the request was 
+      successful or not.
+
+     fetch mode:
+      - same-origin (only succeeds for requests for assets on the same origin, all other
+        requests will reject)
+      - cors (will allow requests for assests on the same-origin and other origins which return
+        the appropriate CORs headers)
+      - cors-with-forced-preflight (will always perform a preflight check before making the
+        actual request)
+      - no-cors (is intended to make requests to other origins that do not have CORS and 
+        result in an opaque response, but as stated, but as stated, this isn't possible 
+        in the window global scope at the moment)
+      
+      fetch(url, {mode})
+      fetch(url, {
+        mehtod: 'post',
+        headers: {'Content-type'},
+        body: ''
+      })
+
+    Axios
+      is a JavaScript library used to make http requests from node.js or XMLHttpRequests
+      from the browser and it supports the Promise API that is native to JS. Another feature 
+      that it has over .fetch() is that it performs automatic transforms of JSON data.
+      
+      - is more secure, featuring built in Cross Site Forgery protection
+      - has better error handling - When your backend returns the status code "500 internal
+        server error", fetch will treat it as the same as status code "200 OK"
+      - has interceptors - allow you to run code or modify the request and/or response before
+        the request and/or response has started. Axios is supports promises and has the ability
+        to run async operations before request is made or before the promise of .hten or .catch
+        are executed. For the first example, we use a config.
+      - has the ability to monitor POST Request Proggress 
+        axios.post(url, data, {
+          onUploadProgress: ({total, loaded}) => {
+            //update progress
+          }
+        })
+      - supports a wider range of browsers - chrome, safari, opera, edge and internet explorer
+        version 8 and newer.
+
+Docker 
+  is defined as the platform for containerizing the applications to isolate it from each 
+  other in order to ensure high availability and more efficiency irrespective of the 
+  environments such as Development, Testing or Production. All the application related
+  dependencies such as libraries, jar files, server related configurations,
+  infrastructure-related elements will be packaged and formed as container called containerized
+  application which does not need any dependency and works independently. I ensures the 
+  application to be run irrespective of the external factors. Containers in Docker have 
+  support from Docker Engine and Host Operating System to support all the operational or 
+  infrastructural related dependencies.
+
+  Components of Docker Architecture:
+    The Docker works on client-server architecture. The Docker client establishes communication
+    with the Docker Daemon. The Docker client and Daemon can run on the same system.
+    A Docker client can also be connected to a remote Docker Deamon. The different types 
+    of Docker components in a Docker architecture: 
+      Client: this performs Docker build pull and run operations to establish 
+      communication with the Docker Host. The Docker command uses Docker API to call the 
+      queries to be run.
+      
+      Host: this component contains Docker Daemon, Containers and its images. The images
+      will be the kind of metadata for the applications which are containerized in the 
+      containers. The Docker Daemon establishes a connection Registry.
+
+      Registry: this component will be storing the Docker images. The public registries are
+      Docker Hub and Docker Cloud which can be used by anyone.
+  
+  Docker Container
+    A Docker Container is a form of encapsulation to the application which holds all the
+    dependencies which share the kernel with other containers in the duration of running 
+    the isolated processes on the host operating system. A Docker container can be created 
+    by creating a Docker image. These Docker images can be run after that using Docker 
+    commands. Docker containers are the instances of the Docker images at the runtime. Docker
+    images can be stored in any public hosts or private hosts like Docker hub. Docker Image 
+    is a set of files which can be run in an isolated process.
+  
+  Docker Image and Docker Hub 
+    The Docker Image is a set of files and a combination of parameters which will allow 
+    creating the instances to run in separate containers as an isolated process. 
+    The Docker hub is kind of repository to the images where these images can be stored 
+    and this access is public. The Docker run command can be used to create the instance 
+    called container which can be run using the Docker image. Docker hub is the largest public 
+    repository of the image containers which is being maintained by the community of
+    developers and individual contributors.
+
+  Docker Functionalities
+    - it simplifies the configuration and provides ease at infrastructure level configuration 
+    - it manages the code pipeline easily which provides consistent environment and stability 
+      in the application 
+    - it enables the isolation of the application 
+    - it improves the productivity of the developer by allowing the developer to solely 
+      concentrate on business logic
+    - it enables rapid deployment in the form of virtualization at the operating system level.
+    - it reduces the utilization of multiples servers in the form of containerization.
+  
+  Docker Registry 
+    A Docker Registry is a place where all the Docker Images will be stored and Docker Cloud 
+    and Docker Hub are the public registries where these images can be hosted upon. The 
+    Docker hub is the default storage for the Docker Images. An own registery can also 
+    be set up as per the requirement. Docker Data Center (DDC) can also be used which
+    includes DTR (Docker Trusted Registery). Docker store will provide the feature of buying 
+    and selling the Docker images.
+
+  Docker Container Lifecycle 
+    1. Create a container 
+    2. Run the Docker container 
+    3. Pause the Container 
+    4. Unpause the Container 
+    5. Start the Container 
+    6. Stop the Container 
+    7. Restart the Container 
+    8. Kill the Container 
+    9. Destroy the Container 
+
+  Docker Objects 
+    The Docker Objects are Docker Images, Services, and Docker Containers. A Docker Image is a 
+    read-only template with the configuration on runtime instrucions for the Docker container.
+    The Services allow scaling the containers across the different Docker Daemons.
+  
+  Docker Namespaces 
+    The Namespaces in Docker is a technology which provides isolated workspace called the 
+    Container. Namespaces provide a layer of isolation for the Docker containers.
+  
+  Important Docker Commands 
+    dockerd - to launch Docker daemon 
+    build - to build an image file for docker 
+    create - to create a new container 
+    kill - to kill a container 
+    commit - to create a new image from container changes
+
+TDD 
+  is a software development process that relies on the repetition of a very short development 
+  cycle: requirements are turned into very specific test cases, then the sftware is improved 
+  to pass the new tests.
+
+Redux 
+  Benefits 
+   - maintainability (maintenance of Redux becomes easier due to strict code structure and
+     organisation)
+   - organization (code organisation is very strict hence the stability of the code
+     is high which intern increases to be much easier)
+   - server rendering (this is useful, particularly to the preliminary render, which keeps
+     up a better user experience or search engine optimization. The server-side created
+     stores are forwarded to the client side)
+   - developer tools (it is highly traceable so changes in position and changes in the 
+     application all such instances make the developers have a real-time experience.)
+   - ease of testing (the first rule of writing testable code is to write small functions
+     that do only one thing and that are independent. Redux's code is made of functions
+     that used to be: small, pure and isolated)
+  
+  Functional Programing Concepts
+    - functions are treated as First class objects
+    - capable to pass functions in the format of arguments
+    - capable to control flow using, recursions, functions and arrays 
+    - helper functions such as reducer and map filter are used 
+    - allows linking functions together
+    - the state doesn't change 
+    - prioritize the order of executing the code is not really necessary
+  
+  Redux Change of State
+    For release of an action, a change in state to an application is applied, this ensures an
+    intent to change the state will be achieved.
+    Example:
+      1. The user clicks a button in the application.
+      2. A function is called in the form of component.
+      3. So now an action gets dispatched by the relative container
+      4. This happens because the prop (which was jus called in the container) is tied to an
+         action dispatcher using mapDispatchToProps (in the container).
+      5. Reducer on capturing the action it intern executes a function and this function returns
+         a new state with specific changes.
+      6. The state change is known by the container and modifies a specific prop in the 
+         component as result of the mapStateToProps function.
+  
+  Typical Flow Of Data In Redux 
+    Call-back from UI component dispatches an action with a payload, these dispatched actions are
+    intercepted and received by the reducers. This interception will generate a new application
+    state. From here the actions will be propagated down through a hierarchy of components from 
+    Redux store. The below diagram depicts the entity structure of a redux+react setup.
+  
+  Redux Store 
+    The store holds the application state and supplies the helper methods for accessing the 
+    state. Register listeners and dispatch actions. There is only on Store while using Redux.
+    The store is configured via the createStoreFunction. The single store represents the entire
+    state. Reducers return a state via action.
+  
+  Redux Reducers 
+    The state of a store is updated by means of reducer functions. A stable collection of a 
+    reducers form a store and each of the stores maintains a separate state associated for 
+    itself. To update the array of donors, we should define donor application.
+    The inital state and action are received by the reducers. Based on the action type, it 
+    returns a new state for the store. The state maintained by reducers are immutable.
+    The below-given reducer it holds the current state and action as an argument for it
+    and then returns the next.
+  
+  Redux Workflow Features 
+    Reset: Allow to reset the state of the store
+    Revert: Roll bakc to the last committed state 
+    Sweep: All disabled actions that you might have fired by mistake will be removed 
+    Commit: makes the current state the initial state 
+  
+  Redux Actions 
+    Actions in Redux are functions which return an action object (payload). The action type
+    an the action data are packed in the action object. Which also allows a donor to be added 
+    to the system. Actions send data between the store and application. All information's 
+    retrieved by the store are produced by the actions.
