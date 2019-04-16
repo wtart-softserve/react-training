@@ -1,0 +1,238 @@
+1. JavaScript types:
+  Primitives:
+    (In JS, a primitive is data that is not an object and has no methods. All primitive are immutable, i.e, they cannot be altered 
+        (like objects, arrays))
+    - Boolean 
+        (type which can have only values: true or false)
+    - Undefined 
+        (primitive value automatically assigned to variables that have just been declared or to formal arguments 
+            for which there are no actual arguments)
+    - Null 
+        (represents a reference that points, to a nonexistent or invalid object or address)
+    - Number 
+        (is a numeric data type in the double precision 64-bit floating point)
+    - String 
+        (In any computer programming language, a string is sequence of characters used to represent text. In JavaScript, 
+            a String is one of the primitive values and the String object is a wrapper around String primitive)
+    - Symbol
+        (A value having the data type 'symbol' can be reffered to as a 'symbol value'.
+         In the JS run-time environment, a symbol value is created by invoking the function
+         Symbol, which dynamically produces an anonymous, unique value. A 
+         symbol may be used as an object property. In some programming languages the symbol
+         data type is referred to as an 'atom'
+         Well-know symbols:
+          The Symbol class has constants for so-called well-know symbols. These
+          symbols let you configure how JS treats an object, by using them as property
+          keys. Examples of well-known symbols are: Symbol.iterator for array-like
+          objects, or Symbol.search for string objects).
+  Object 
+   (Object refers to a data structure containing data and instructions for working 
+    with the data. Object sometimes refer to real-world things, for example a car or map
+    object in a racing game. JS, Java, C++, Python and Ruby are examples of object-oriented
+    programming languages)
+
+2. Differences between Null and Undefined
+   Undefined means a variable has been declared but has not yet been assigned a value.
+   On the other hand, null is an assignment value. It can be assigned to a variable as a
+   representation of no value.
+
+3. Closure
+    A clousure is the combination of a function and the lexical environment within which 
+    that function was declared. The environment consists of any local variables that were 
+    in-scope at the time the closure was created.
+
+4. OOP
+    From the OOP perspective, and application is a collection of 'objects' that comunnicate
+    with each other.
+
+    - New Operator
+      The new operator lets developers create an instance of a user-defined object type
+      or of one of the built-in object types that has a consctructor function. The new
+      keyword does the following things:
+       1. Creates a blank, plain JavaScript object;
+       2. Links this object to another object; (Object.assign)
+       3. Passes the newly created object from Step 1 as the this context;
+       4. Returns this if the function doesn't return its own object.
+
+       Object.assign() - method is used to copy the values of all enumerable own
+       properties from one or more source objects to a target object. It will return
+       the target object.
+
+       Object.create() - method creates a new object, using and existing object
+       as the prototype of the newly created object.
+
+5.     2. Create two classes an Animal, a Rabbit and build dependency between them by (Object.create and without Object.create)
+
+const animal = {
+  name: '',
+  age: 0
+}
+
+let rabbit = Object.create(animal);
+rabbit = Object.assign({}, animal);
+
+SOLID 
+Single responsibility principle - A class should have only a single responsibility, that is,
+only changes to one part of the software's specification should be able to affect the specification
+of the class.
+
+Open-closed principle - 'Software entities ... should be open for extension, but closed for
+modification'.
+
+Liskov substitution principle - 'Objects in a program should be replaceable with instances
+of their subtypes without altering the correctnes of that program.
+
+Interface segregation principle - 'Many client-specific interfaces are better than one
+general-purpose interface.'
+
+Dependency inversion principle - One should 'depend upon abstractions, [not] concretions.'
+
+Virtual DOM
+  Virtual dom is in-memory reprsesentation of Real DOM. It is lightweight JavaScript
+  object which is copy of Real DOM.
+  Updating virtual DOM in React is faster because ReactJS uses:
+   - Efficient diff algorithm
+   - Batched update operations
+   - Efficient update of sub tree only
+   - Uses observable to detect change
+
+HOC 
+ Similar to the decorator pattern, a function that takes a component as the first
+ parameter and returns a new component.
+  pros:
+    - Imortantly they provide a way to reuse code when using ES6 classes.
+    - No longer have method name clashing if two HOC implement the same one.
+    - It is easy to make small reusable units of code, thereby supporting the 
+      single responsibility principle
+    - Apply multiple HOCs to one component by composing them. The readability can be
+      improve using a compose function like Recompose.
+
+  cons:
+    - There is still indirection issue, however, not about which HOC is changing the 
+      state but which one is providing a certain prop.
+    - It is possible two HOC could be using the same prop meaning one would
+      overwrite the other silently.
+    - Boilerplate code like setting the displayName with the HOC function name
+    - Ensure all relevant props are passed through to the component.
+    - Hoist static methods from the wrapped component
+    - It is easy to compose several HOCs together and then this creates deeply
+      nested tree making it difficult to debug.
+
+Render Props:
+  A render prop is where a component's prop is assigned a function and this is called
+  in the render method of the component. Calling the function can return a React
+  element or component to render.
+    pros:
+      - Reuse code across components when using ES6 classes.
+      - The lowest level of indirection - it's clear which component is called
+        and the state is isolated.
+      - No naming collision issues for props, state and class methods.
+      - No need to deal with boiler code and hoisting static methods.
+    
+    cons:
+      - Caution using shouldComponentUpdate as the render prop might close overwrite
+        data it is unaware of.
+      - There could also be minor memory issues when defining a closure for every 
+        render. But be sure to measure first before making performance changes as 
+        it might not be and issue for your app.
+      - Another small annoyance is the render props callback is not so neat in JSX
+        as it needs to be wrapped in an expression. Rendering the result of an 
+        HOC does look clener.
+
+Hooks - are new addition in React 16.8. They let you use state and other React features
+without writing a class.
+
+JSX - it is syntax extension to JavaScript.
+
+React events
+  - you cannot return false to prevent default behavior in React.
+
+  SyntheticEvent - a cross-browser wrapper around the browser's native event.
+  It has the same interface as the browser's native event, including
+  stopPropagation() and preventDefault(), except the events work identically
+  across all browsers.
+
+  Event Pooling - the SyntheticEvent is pooled. This means that the SyntheticEvent
+  object will be reused and all properties will be nullified after the event callback
+  has been invoked. This is for performance reasons. As such, you cannot access
+  the event in an asynchronus way.
+
+Controlled Components - In HTML, form elements such as <input>, <textarea>, and 
+<select> typically maintain their own state and update it based on user inpu. In
+React, mutable state is typically kept in the state property of components, and only
+updated with setState(). We can combine the two by making the React state be the 
+'single source of truth'. Then the React component that renders a form also controls
+what happens in that form on subsequent user input. An input form element whose value
+is controlled by React in this way is called a 'controlled component'.
+
+Thinking in React:
+ 1. Break UI Into A Component Hierarchy
+ 2. Build A Static Version in React
+ 3. Identify The Minimal (but complete) Representation Of UI state
+ 4. Identify Where Your State Should Live
+ 5. Add Inverse Data Flow 
+
+Context - provides a way to share values like between components without having
+to explicitly pass prop through every level of the tree.
+
+If you only want to avoid passing some props through many levels, component
+composition is often a simpler solution than context.
+
+const MyContext = React.createContext(defaultValue);
+<MyContext.Provider value={ some value } />
+
+Error Boundares - are React components that catch JavaScript errors anywhere in their
+child component tree, log those errors, and display a fallback UI instead of the component
+three that crashed. Error boundries catch errors during rendering, in lifecycle methods,
+and in constructors of the whole tree below them.
+  Error boundries do not catch errors for:
+    - Event handlers
+    - Asynchronous code
+    - Server side rendering
+    - Errors thrown in the error boundary itself
+  
+  A class componetn becomes an error boundary if it defines either (or both)
+  of the lifecycle methods: 
+    static getDerivedStateFromError()
+    componentDidCatch()
+
+
+Forwarding Refs 
+  Ref forwarding is an opt-in feature that lets some components take a ref they 
+  receive, and pass it further down ( in other words, 'forward' it) to a child.
+    - We creat React ref by calling React.createRef and assign it to a ref variable.
+    - We pass our ref down to <FancyButton ref={ref} /> by specifying it 
+      as a JSX attribute.
+    - React passes the ref to the (props, ref) => ...function inside 
+      forwardRef as a second argument.
+
+Fragments - a common pattern in React is for a component to return multiple elements.
+Fragments let you group a list of children without adding extra nodes to the DOM.
+
+
+Portals - provide a first-class way to render children into DOM node that exists
+outside the DOM hierarchy of the parent component.
+  ReactDom.createPortal(child, container);
+
+
+ReactDom - package provides DOM-specific methods that can be used at the top level
+of your app and as an escape hatch to get outside of the React model if you need to.
+Most of your componets should not need to use this module.
+
+React lifecycle:
+  - Mounting
+    - constructor()
+    - static getDerivedStateFromProps()
+    - render()
+    - componentDidMount()
+  - Updating
+    - static getDerivedStateFromProps()
+    - shouldComponentUpdate()
+    - render()
+    - getSnapshotBeforeUpdate()
+    - componentDidUpdate()
+  - Unmounting
+    - componentWillUnmount()
+  - Error 
+    - static getDerivedStateFromError()
+    - componentDidCatch()

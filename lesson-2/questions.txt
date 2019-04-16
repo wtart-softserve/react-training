@@ -13,62 +13,7 @@ Questions
 
 Code
 
-2. Placement render prop
 
-interface
-
-target: oneOfType([any]),
-context: oneOfType([
-    instanceOf(Element),
-    shape({
-        current: instanceOf(Element)
-    })
-]),
-modifiers: oneOfType([object]),
-position: oneOf([
-    'auto-start',
-    'auto',
-    'auto-end',
-    'top-start',
-    'top',
-    'top-end',
-    'right-start',
-    'right',
-    'right-end',
-    'bottom-end',
-    'bottom',
-    'bottom-start',
-    'left-end',
-    'left',
-    'left-start'
-]),
-
-className: string,
-targetClassName: string,
-contentClassName: string,
-
-isPortal: bool,
-hidden: bool.isRequired,
-isOpen: bool.isRequired,
-
-children: func.isRequired,
-onDismiss: func.isRequired
-
-
-
-Use Case
-
-<Placement
-    isOpen={this.props.isOpen}
-    target={<Button onClick={}>Open Something<Button>}
-    onDismiss={this.props.onDismiss}
-    contentClassName={styles.content}
-    position="bottom-end"
->
-    {() => (
-        <div><List …. /></div>
-    )}
-</Placement>
 
 
 
